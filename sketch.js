@@ -1,47 +1,28 @@
+var start = 0;
+
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    noLoop();
-    
     angleMode(DEGREES);
+    noiseDetail(2);
   }
-  
-  function keyPressed() {
-   if (keyCode == ENTER) { save('screenshot.png'); }
-  }
-  
+
   function draw() {
-    background(220);
-    
-    let cx = width / 2, cy = height / 2;
-    
-     let num = 6;
-     let offset = min(width, height) / 5;
-     let margin = offset / 10;
-     let d = (min(width, height)  - offset * 2 - margin * (num - 1)) / (num - 1);
-    let x_offset = (width - d * num) / 2;
-    let y_offset = (height - d * num) / 2;
-     for (let i = 0; i < num; i++) {
-      for (let j = 0; j < num; j++) {
-       let cx = (d + margin) * i + x_offset;
-       let cy = (d + margin) * j + y_offset;
-    
-      let rot = int(random(4)) * 90;
-      push();
-      translate(cx, cy);
-      rotate(rot);
-      fill(0);
-      
-      let mode = int(random(4));
-      if (mode == 0) {
-        circle(0, 0, d);
-      } else if (mode == 1) {
-        rect(-d/2, -d/2, d, d);
-      } else if (mode == 2) {
-        triangle(-d/2, -d/2, d/2, -d/2, d/2, d/2);
-      } else if (mode == 3) {
-        arc(-d/2, -d/2, d*2, d*2, 0, 90);
+    background(200);
+    noStroke();
+    var indexX = 0;
+    var space = width / 100;
+
+    for(var x = 0; x < width; x += space){
+      var indexY = 0;
+      for(var y = 0; y < height; y += space){
+        var r = noise(start, start) * 40;
+        var g = noise(indexX * start, indexY + start) * 190;
+        var b = noise(indexX, indexY) * 171;
+        fill(r, g, b, 150);
+        rect(x, y, space);
+      indexY += 1
       }
-      pop();
-    }  
-   }
-  }
+      indexX += 0.01
+    }
+    start += 0.007;
+}
