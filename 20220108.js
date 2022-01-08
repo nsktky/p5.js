@@ -1,29 +1,38 @@
 var inc = 0.1;
-var scl = 20;
+var scl = 10;
 var cols, rows;
 var fr;
 var zoff = 0;
 var particles = [];
+var flowfield;
 
 function Particle(){
   this.pos = createVector(random(width), random(height));
-  this.vel = p5.Vector.random2D();
+  this.vel = createVector(0, 0);
   this.acc = createVector(0, 0);
-  this.col_num = int(random(0.1, 3));
+  this.maxspeed = 1;
 
   this.update = function(){
     this.vel.add(this.acc);
+    this.vel.limit(this.maxspeed);
     this.pos.add(this.vel);
     this.acc.mult(0);
   }
 
+  this.follow = function(vectors){
+    var x = floor(this.pos.x / scl);
+    var y = floor(this.pos.y / scl);
+    var index = x + y * cols;
+    var force = vectors[index];
+    this.applyForce(force);
+  }
   this.applyForce = function(force){
     this.acc.add(force);
   }
 
   this.show = function(){
-    stroke(0, 0, 0, 100);
-    strokeWeight(3);
+    stroke(240, 178, 84, 10);
+    strokeWeight(1);
     point(this.pos.x, this.pos.y);
   }
 
@@ -40,37 +49,33 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     cols = floor(width / scl);
     rows = floor(height / scl);
-    background(0, 98, 177)
-    for(var i = 0; i < 100; i++){
+    flowfield = new Array(cols * rows);
+    var size = max(width, height) * 10
+    for(var i = 0; i < size; i++){
       particles[i] = new Particle();
     }
-
+    background(79, 89, 61,220)
   }
 
   function draw() {
-    background(0, 98, 177, 20)
     var yoff = 0;
     for(var y = 0; y < rows; y++){
       var xoff = 0;
       for(var x = 0; x < cols; x++){
-        var index = (x + y * width) * 4;
-        var angle = noise(xoff, yoff, zoff) * TWO_PI;
+        var index = x + y * cols;
+        var angle = noise(xoff, yoff, zoff) * TWO_PI * 4;
         var v = p5.Vector.fromAngle(angle);
+        v.setMag(0.1);
+        flowfield[index] = v;
         xoff += inc;
-        stroke(196, 193, 199, 10);
-
-        push();
-        translate(x * scl, y * scl);
-        rotate(v.heading());
-        strokeWeight(1);
-        // line(0, 0, scl, 0);
-        pop();
+        stroke(200);
       }
       yoff += inc
 
-      zoff += 0.00008;
+      zoff += 0.00005;
     }
     for(var i = 0; i < particles.length; i++){
+      particles[i].follow(flowfield);
       particles[i].update();
       particles[i].show();
       particles[i].edges();
