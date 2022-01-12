@@ -37,7 +37,7 @@ function Particle(){
 }
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    ç
     cols = floor(width / scl);
     rows = floor(height / scl);
     background(0, 98, 177)
