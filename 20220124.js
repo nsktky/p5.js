@@ -4,7 +4,6 @@ var cx, cy;
 var dx, dy;
 var x, y;
 var list = [];
-var c_list = ['#f0d3e5', '#ffca00', '#513061', '#f7e33e'];
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -26,7 +25,7 @@ function setup() {
     point(cx, cy);
     point(dx, dy);
     for (var i = 0; i < 8; i++) {
-        list[i] = random(0, 0.6);
+        list[i] = random(0.1, 0.6);
     }
   }
 
