@@ -1,26 +1,36 @@
-var a,b,c;
+let x = 0;
+let y = 0;
+let space = 2;
+let count = 0;
 
 function setup(){
   createCanvas(windowWidth, windowHeight);
-  background(0);
-  angleMode(DEGREES);
-
-  a = random(1);
-  b = random(1);
-  c = random(1);
+  background(60);
 }
 
 function draw(){
-translate(width/2,height/random(1,8));
-rotate(map(random(frameCount),0,1,0,360));
-r = map(noise(sin(a)),0,1,105,175);
-g = map(noise(cos(b)),0,1,101,171);
-b = map(noise(sin(c)),0,1,77,147);
-stroke(r,g,b,30);
-noFill();
-ellipse(0, 0, max(width, height), min(width, height)/2);
+  if(count == 0){
+    stroke(142,139,194);
+    strokeWeight(space+4);
+    line(x, y, y, x);
+    count += 1;
+    x += space;
+  } else if (count == 1) {
+    stroke(200,200,200);
+    strokeWeight(space);
+    line(x, y, y, x);
+    count += 1;
+    x += space*10;
+  } else {
+    stroke(97, 95, 98);
+    strokeWeight(space*14);
+    line(x, y, y, x);
+    count = 0;
+    x += space;
+  }
 
-a += 0.01
-b += 0.01
-c += 0.01
+  if(x > width*2) {
+    x = 0;
+    background(60);
+    }
 }
