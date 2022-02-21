@@ -6,7 +6,7 @@ function setup() {
 
 function draw() {
   stroke(0);
-  strokeWeight(width);
+  strokeWeight(1);
   noFill();
 
   let gradientStroke = drawingContext.createLinearGradient(
@@ -30,8 +30,8 @@ function draw() {
   noStroke();
   for(let i = 0; i < 360; i += 0.1){
     let rad = cos(i)*frameCount
-    // let x = map(i,0,360,0,width);
-    let x = i*30
+    let x = map(i,0,360,0,width);
+    //let x = i*30
     let y = -sin(rad)*frameCount*0.2;
     circle(x, y, 10)
   }
