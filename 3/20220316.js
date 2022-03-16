@@ -1,6 +1,6 @@
 let count = 0;
-let tileCountX = 3;
-let tileCountY = 3;
+let tileCountX = 4;
+let tileCountY = 4;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -8,10 +8,10 @@ function setup() {
 }
 
 function draw() {
-  background(0);
+  background(63, 60, 124);
   noFill();
 
-  count = frameCount / 10 + 10;
+  count = frameCount + 10;
   let para = frameCount / height;
 
   let tileWidth = width / tileCountX;
@@ -26,11 +26,11 @@ function draw() {
       push();
       translate(posX, posY);
 
-        stroke(255);
+        stroke(184, 41, 81);
         for (let i = 0; i < count; i++) {
-          rect(0, 0, tileWidth, tileHeight);
-          scale(1 - 3 / count);
-          rotate(para * 0.01);
+          ellipse(0, para * height * 0.3, tileWidth, tileHeight);
+          scale(1 - 2 / count);
+          rotate(para * 0.005);
         }
       pop();
     }
