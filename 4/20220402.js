@@ -64,7 +64,3 @@ function draw() {
   if (y < 0) y = height, actRandomSeed = random(100000);
   if (y > height) y = 0, actRandomSeed = random(100000);
 }
-
-function mousePressed() {
-
-}
