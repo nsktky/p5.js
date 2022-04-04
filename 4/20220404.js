@@ -36,8 +36,3 @@ function draw() {
     }
   }
 }
-
-function keyPressed() {
-  x = mouseX;
-  y = mouseY;
-}
