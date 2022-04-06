@@ -28,10 +28,10 @@ function draw() {
   moveY += map(noise(b, t), 0.0, 1.0, -20, 20);
   t += 0.01
 
-  if (x > width) x = 0
-  if (x < 0) x = width
-  if (y < 0) y = height
-  if (y > height) y = 0
+  if (x > width) x = random(width);
+  if (x < 0) x = random(width);
+  if (y < 0) y = random(height);
+  if (y > height) y = random(height);
 
   let d = dist(x, y, moveX, moveY);
 
