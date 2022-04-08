@@ -1,5 +1,4 @@
 let points = [];
-let nextPoints = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
