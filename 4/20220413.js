@@ -8,7 +8,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background(0, 29, 66);
   col1 = color(126, 190, 171, 10);
-  col2 = color(0, 170, 110, 100);
+  col2 = color(0, 170, 10, 100);
   radius = min(width, height) * 0.4;
 
   stroke(255, 100);
