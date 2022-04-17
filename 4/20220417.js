@@ -8,6 +8,7 @@ function setup() {
   background(0, 0, 56);
   noiseDetail(1);
   angleMode(DEGREES);
+  noStroke();
 
   let tileCount = 100;
   let grid = width / tileCount;
@@ -21,12 +22,12 @@ function setup() {
 }
 
 function draw() {
-  let col2 = color(0, 121, 183, 100);
-  let col1 = color(29, 30, 162, 100);
+  let col2 = color(0, 121, 183, 50);
+  let col1 = color(29, 30, 162, 10);
 
   for (let i = 0; i < points.length; i++) {
     let angle = map(noise(points[i].x * mult, points[i].y * mult), 0, 1, 100, mult2);
-    points[i].add(createVector(sin(angle), cos(angle)));
+    points[i].add(createVector(cos(angle)*tan(angle), sin(angle)*tan(angle)));
 
     if (points[i].x > width) points[i].x = random(width);
     if (points[i].x < 0) points[i].x = random(width);
@@ -35,6 +36,6 @@ function draw() {
 
     stroke(col1);
     fill(col2);
-    rect(points[i].x, points[i].y, 10);
+    ellipse(points[i].x, points[i].y, 2);
   }
 }
