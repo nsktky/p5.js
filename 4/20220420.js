@@ -31,7 +31,7 @@ function draw() {
 
   col1 = color(253, 215, 93, 100);
   col2 = color(250, 191, 19, 10);
-  
+
   for (let i = 0; i < points.length; i++) {
     let angle = map(noise(points[i].x * mult, points[i].y * mult), 0, 1, 320, mult2);
     points[i].add(createVector(cos(angle)*tan(angle), sin(angle)*tan(angle) + 2));
