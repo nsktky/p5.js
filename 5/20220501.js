@@ -23,7 +23,7 @@ function setup() {
     }
   }
 
-  fill(10, 30, 70);
+  fill(30);
   rect(width * 0.39, height * 0.19, width * 0.22, height);
 
   noStroke();
