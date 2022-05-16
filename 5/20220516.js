@@ -1,15 +1,16 @@
 let points = [];
-let mult = 0.01;
+let mult = 0.001;
 let mult2 = 600;
+let col;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(0);
   noiseDetail(4);
   noStroke();
-  angleMode(DEGREES);
+  // angleMode(DEGREES);
 
-  let tileCount = 30;
+  let tileCount = 1;
   let grid = width / tileCount;
 
   for (let y = 0; y <= height; y += grid) {
@@ -18,25 +19,21 @@ function setup() {
       points.push(p);
     }
   }
+  col = color(255, 2);
 }
 
 function draw() {
-  let col1 = color(200, 50);
-
   for (let i = 0; i < points.length; i++) {
     let angle = map(noise(points[i].x * mult, points[i].y * mult), 0, 1, 100, mult2);
     points[i].add(createVector(sin(angle), cos(angle)));
 
-    fill(col1);
-    let xd = dist(points[i].x, 0, mouseX, 0);
-    let yd = dist(0, points[i].y, 0, mouseY);
+    if (points[i].x > width) points[i].x = random(width);
+    if (points[i].x < 0) points[i].x = random(width);
+    if (points[i].y < 0) points[i].y = random(height);
+    if (points[i].y > height) points[i].y = random(height);
 
-    if (xd > width) xd = random(width);
-    if (xd < 0) xd = random(width);
-    if (yd < 0) yd = random(height);
-    if (yd > height) yd = random(height);
-
-    circle(xd, yd, 2);
+    fill(col);
+    rect(points[i].x, points[i].y, random(width*0.2));
   }
 }
 
