@@ -43,8 +43,3 @@ function draw() {
     background(0);
   }
 }
-
-function mousePressed() {
-  clear();
-  background(0);
-}
