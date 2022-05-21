@@ -10,7 +10,7 @@ function setup() {
   noStroke();
   angleMode(DEGREES);
 
-  let tileCount = 50;
+  let tileCount = 30;
   let grid = width / tileCount;
 
   for (let y = 0; y <= height; y += grid) {
