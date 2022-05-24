@@ -6,11 +6,11 @@ let col, bgcol, timer, flag, radius;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(0);
-  noiseDetail(1);
+  noiseDetail(4);
   noStroke();
   angleMode(DEGREES);
 
-  let tileCount = 50;
+  let tileCount = 60;
   let grid = width / tileCount;
 
   for (let y = 0; y <= height; y += grid) {
@@ -38,61 +38,67 @@ function draw() {
     if (points[i].y > height) points[i].y = random(height);
 
     let d = dist(points[i].x, points[i].y, width * 0.5, height * 0.5);
-    if (d < radius) {
+    if (d > radius) {
       fill(col);
       circle(points[i].x, points[i].y, 5);
-
       fill(bgcol);
+      ellipse(points[i].x+random(5), points[i].y+random(5), random(5));
+    }
+
+    if (d < radius) {
+      fill(50);
+      circle(points[i].x, points[i].y, 5);
+      fill(250);
       ellipse(points[i].x+random(5), points[i].y+random(5), random(5));
     }
   }
 
-  if(frameCount % timer == 0) {
-    clear();
-    background(0);
+  // if(frameCount % timer == 0) {
+  //   clear();
+  //   background(0);
 
-    if (flag == 0) {
-      for (let i = 0; i < points.length; i++) {
-        points[i].x = random(random(random(width)));
-        points[i].y = random(height);
-      }
-      flag ++;
-    } else if (flag == 1) {
-      for (let i = 0; i < points.length; i++) {
-        points[i].x = width - random(random(random(width)));
-        points[i].y = -random(height);
-      }
-      flag ++;
-    } else if (flag == 2) {
-      for (let i = 0; i < points.length; i++) {
-        points[i].x = random(width);
-        points[i].y = random(height);
-      }
-      flag ++;
-    } else if (flag == 3) {
-      for (let i = 0; i < points.length; i++) {
-        points[i].x = random(random(random(width)));
-        points[i].y = random(random(random(height)));
-      }
-      flag ++;
-    } else if (flag == 4) {
-      for (let i = 0; i < points.length; i++) {
-        points[i].x = width - random(random(random(width)));
-        points[i].y = random(random(random(height)));
-      }
-      flag ++;
-    } else if (flag == 5) {
-      for (let i = 0; i < points.length; i++) {
-        points[i].x = random(random(random(width)));
-        points[i].y = height - random(random(random(height)));
-      }
-      flag ++;
-    } else {
-      for (let i = 0; i < points.length; i++) {
-        points[i].x = width - random(random(random(width)));
-        points[i].y = height - random(random(random(height)));
-      }
-      flag = int(random(6));
-    }
-  }
+  //   if (flag == 0) {
+  //     for (let i = 0; i < points.length; i++) {
+  //       points[i].x = random(random(random(width)));
+  //       points[i].y = random(height);
+  //     }
+  //     flag ++;
+  //   } else if (flag == 1) {
+  //     for (let i = 0; i < points.length; i++) {
+  //       points[i].x = width - random(random(random(width)));
+  //       points[i].y = -random(height);
+  //     }
+  //     flag ++;
+  //   } else if (flag == 2) {
+  //     for (let i = 0; i < points.length; i++) {
+  //       points[i].x = random(width);
+  //       points[i].y = random(height);
+  //     }
+  //     flag ++;
+  //   } else if (flag == 3) {
+  //     for (let i = 0; i < points.length; i++) {
+  //       points[i].x = random(random(random(width)));
+  //       points[i].y = random(random(random(height)));
+  //     }
+  //     flag ++;
+  //   } else if (flag == 4) {
+  //     for (let i = 0; i < points.length; i++) {
+  //       points[i].x = width - random(random(random(width)));
+  //       points[i].y = random(random(random(height)));
+  //     }
+  //     flag ++;
+  //   } else if (flag == 5) {
+  //     for (let i = 0; i < points.length; i++) {
+  //       points[i].x = random(random(random(width)));
+  //       points[i].y = height - random(random(random(height)));
+  //     }
+  //     flag ++;
+  //   } else {
+  //     for (let i = 0; i < points.length; i++) {
+  //       points[i].x = width - random(random(random(width)));
+  //       points[i].y = height - random(random(random(height)));
+  //     }
+  //     flag = int(random(6));
+  //   }
+  // }
 }
