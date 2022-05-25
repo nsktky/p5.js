@@ -24,7 +24,7 @@ function setup() {
 
   timer = 300;
   flag = 0;
-  radius = max(width, height) * 0.3;
+  radius = max(width, height) * 0.01;
 }
 
 function draw() {
@@ -46,10 +46,12 @@ function draw() {
     }
 
     if (d < radius) {
-      fill(50);
+      fill(234, 85, 72);
       circle(points[i].x, points[i].y, 5);
-      fill(250);
+      fill(147, 46, 68);
       ellipse(points[i].x+random(5), points[i].y+random(5), random(5));
     }
   }
+
+  radius += 1;
 }
