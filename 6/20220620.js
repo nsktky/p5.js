@@ -49,19 +49,6 @@ function draw() {
     if (points[i].y > height) points[i].y = random(height);
 
     push();
-    // let gradientFill = drawingContext.createRadialGradient(
-    //   width * 0.5,
-    //   height * 0.5,
-    //   width * 0.1,
-    //   width *0.5,
-    //   height * 0.5,
-    //   width * 0.7
-    // );
-    // gradientFill.addColorStop(0, color(235, 97, 42));
-    // gradientFill.addColorStop(0.5, color(205, 103, 21));
-    // gradientFill.addColorStop(1, color(62, 34, 0));
-    // drawingContext.fillStyle = gradientFill;
-    // circle(points[i].x, points[i].y, 5);
 
     let gradientFill2 = drawingContext.createRadialGradient(
       width * 0.5,
@@ -77,8 +64,6 @@ function draw() {
     drawingContext.fillStyle = gradientFill2;
     circle(points[i].x+random(5), points[i].y+random(5), 5);
 
-    // fill(bgcol);
-    // circle(points[i].x+random(5), points[i].y+random(5), random(10));
     pop();
   }
 
