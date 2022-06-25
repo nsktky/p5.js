@@ -1,6 +1,6 @@
 let img, cnv;
 function preload() {
-  img = loadImage("img20220624.jpg")
+  img = loadImage("img20220625.jpg")
 }
 
 let points = [];
@@ -18,7 +18,7 @@ function setup() {
 
   noiseDetail(4);
   angleMode(DEGREES);
-  let tileCount =   10;
+  let tileCount = 50;
   let grid = width / tileCount;
 
   for (let y = 0; y <= height; y += grid) {
@@ -31,24 +31,30 @@ function setup() {
 }
 
 function draw() {
-  if(frameCount > 240){
+  if(frameCount > 120){
     for (let i = 0; i < points.length; i++) {
       let angle = map(noise(points[i].x * mult, points[i].y * mult), 0, 1, 100, mult2);
       points[i].add(createVector(sin(angle), cos(angle)));
 
       if (points[i].x > width) points[i].x = random(width);
-      if (points[i].x < 0) points[i].x = width;
-      if (points[i].y < 0) points[i].y = height;
+      if (points[i].x < 0) points[i].x = random(width);
+      if (points[i].y < 0) points[i].y = random(height);
       if (points[i].y > height) points[i].y = random(height);
 
       let pixColor = color(img.get(points[i].x, points[i].y));
       let scale = round(red(pixColor) + green(pixColor) + blue(pixColor));
-      fill(scale*0.97, scale*0.96, scale*0.89);
+      fill(scale*0.05, scale*0.113, scale*0.258);
       rect(points[i].x, points[i].y, 1);
-      fill(scale*0.4, scale*0.39, scale*0.13);
-      rect(points[i].x+10, points[i].y+10, 1);
-      fill(scale*0.57, scale*0.18, scale*0.26);
-      rect(points[i].x-10, points[i].y-10, 1);
+
+      if(frameCount > 1200){
+        fill(scale*0.01, 150);
+        rect(points[i].x, points[i].y, 1);
+      }
+
+      if(frameCount > 1800){
+        fill(pixColor);
+        rect(points[i].x, points[i].y, 1);
+      }
     }
   }
 }
