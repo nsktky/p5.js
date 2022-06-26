@@ -5,7 +5,8 @@ function preload() {
 
 let points = [];
 let mult = 0.001;
-let mult2 = 300;
+let mult2 = 600;
+
 function setup() {
   cnv = createCanvas(img.width, img.height);
   let newCanvasX = (windowWidth - img.width)/2;
@@ -14,11 +15,11 @@ function setup() {
 
   noStroke();
   img.loadPixels();
-  image(img, 0, 0)
+  image(img, 0, 0);
 
   noiseDetail(4);
   angleMode(DEGREES);
-  let tileCount = 50;
+  let tileCount = 60;
   let grid = width / tileCount;
 
   for (let y = 0; y <= height; y += grid) {
@@ -31,7 +32,7 @@ function setup() {
 }
 
 function draw() {
-  if(frameCount > 120){
+  if(frameCount > 180){
     for (let i = 0; i < points.length; i++) {
       let angle = map(noise(points[i].x * mult, points[i].y * mult), 0, 1, 100, mult2);
       points[i].add(createVector(sin(angle), cos(angle)));
@@ -43,18 +44,8 @@ function draw() {
 
       let pixColor = color(img.get(points[i].x, points[i].y));
       let scale = round(red(pixColor) + green(pixColor) + blue(pixColor));
-      fill(scale*0.05, scale*0.113, scale*0.258);
-      rect(points[i].x, points[i].y, 1);
-
-      if(frameCount > 1200){
-        fill(scale*0.01, 150);
-        rect(points[i].x, points[i].y, 1);
-      }
-
-      if(frameCount > 1800){
-        fill(pixColor);
-        rect(points[i].x, points[i].y, 1);
-      }
+      fill(red(pixColor), scale*sin(frameCount*0.1), scale*cos(frameCount*0.1), 100);
+      rect(points[i].x, points[i].y, 3);
     }
   }
 }
