@@ -47,10 +47,10 @@ function draw() {
       let newGreen = blue(pixColor);
       let newBlue = red(pixColor);
       let j = int(random(1, i));
+      strokeWeight(1);
       stroke(newRed*1.5, newGreen*1.5, newBlue*1.5);
-      strokeWeight(10)
       line(points[i].x, points[i].y, points[j].x, points[j].y);
-      fill(newRed*1.2, newGreen*1.2, newBlue*1.2);
-      rect(points[i].x, points[i].y, 20);
+      fill(newRed*2, newGreen*2, newBlue*2);
+      rect(points[i].x, points[i].y, 10);
     }
 }
