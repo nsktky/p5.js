@@ -1,11 +1,11 @@
 let img, cnv;
 function preload() {
-  img = loadImage("img20220623.jpg")
+  img = loadImage("img20220731.jpg")
 }
 
 let points = [];
 let mult = 0.0001;
-let mult2 = 200;
+let mult2 = 100;
 
 function setup() {
   cnv = createCanvas(img.width, img.height);
@@ -14,12 +14,12 @@ function setup() {
   cnv.position(newCanvasX, newCanvasY);
   img.loadPixels(0);
 
-  angleMode(DEGREES);
+  // angleMode(DEGREES);
   rectMode(CENTER);
-  noiseDetail(2);
+  noiseDetail(5);
   background(img);
 
-  let tileCount = 40;
+  let tileCount = 20;
   let grid = width / tileCount;
 
   for (let y = 0; y <= height; y += grid) {
@@ -41,12 +41,14 @@ function draw() {
       if (points[i].y > height) points[i].y = random(height);
       let pixColor = color(img.get(points[i].x, points[i].y));
 
-      let newRed = map(noise(red(pixColor)), 0, 1, 0, 255);
-      let newGreen = map(noise(green(pixColor)), 0, 1, 0, 255);
+      let newRed = red(pixColor);
+      let newGreen = green(pixColor);
       let newBlue = blue(pixColor);
 
-      stroke(newRed*2, newGreen*2, newBlue*2, 10);
       noFill();
-      rect(points[i].x, points[i].y, 1);
-    }
+      if(newGreen > 150){
+        stroke(newRed, newGreen*3, newBlue*5);
+        rect(points[i].x, points[i].y, 1);
+      }
+  }
 }
