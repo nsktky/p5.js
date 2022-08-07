@@ -17,10 +17,10 @@ function setup() {
   img.loadPixels(0);
   img2.loadPixels(0);
 
-  // angleMode(DEGREES);
+  angleMode(DEGREES);
   rectMode(CENTER);
   noiseDetail(5);
-  background(200);
+  background(20);
   noStroke();
 
   let tileCount = 40;
@@ -50,27 +50,22 @@ function draw() {
       let pixColor = color(img.get(points[i].x, points[i].y));
       let pixColor2 = color(img2.get(points[i].x, points[i].y));
 
-      let newRed = map(noise(red(pixColor2)), 0, 1, 0, 255);
-      let newGreen = green(pixColor2);
-      let newBlue = blue(pixColor2);
+      let newRed = map(noise(red(pixColor)+red(pixColor2)),0,1,0,255);
+      let newGreen = green(pixColor)+green(pixColor2);
+      let newBlue = blue(pixColor)+blue(pixColor2);
 
-      if(green(pixColor) > 140){
-        noStroke();
-        fill(red(pixColor))
-        rect(points[i].x, points[i].y, 1);
-      }
+      noStroke();
+      fill(newRed/2, newGreen/2, newBlue/2, 10);
+      rect(points[i].x, points[i].y, 30);
 
       if(green(pixColor) > 200) {
-        stroke(newRed*2);
+        stroke(newRed, green(pixColor), blue(pixColor2));
+        strokeWeight(random(4));
         line(points[i].x, points[i].y, points[i].x, points[i].y-sizes[i].x);
-        fill(newBlue);
+        fill(newRed, newGreen, newBlue);
         circle(points[i].x, points[i].y-sizes[i].x, sizes[i].y);
         sizes[i].x += 1.5;
         sizes[i].y += 0.2;
       }
-      
-      noStroke();
-      fill(pixColor);
-      rect(points[i].x, points[i].y, 0.2);
   }
 }
