@@ -10,7 +10,7 @@ function setup() {
   noiseDetail(1);
   // angleMode(DEGREES);
 
-  let tileCount = 40;
+  let tileCount = 50;
   let grid = width / tileCount;
 
   for (let y = 0; y <= height; y += grid) {
@@ -35,8 +35,8 @@ function draw() {
     if (points[i].y > height) points[i].y = random(height);
 
     fill(col1);
-    ellipse(points[i].x, points[i].y, 2);
+    ellipse(points[i].x, points[i].y, 10);
     fill(col2);
-    rect(points[i].x, points[i].y, 10);
+    rect(points[i].x, points[i].y, 20);
   }
 }
