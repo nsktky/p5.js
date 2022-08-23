@@ -12,6 +12,4 @@ function draw() {
   fill(100)
   stroke(random(200, 300), 50, 100)
   rect(width/2, height/2, width/frameCount*100, random(height*0.7))
-  // rect(random(width),random(height),random(50))
-
 }
