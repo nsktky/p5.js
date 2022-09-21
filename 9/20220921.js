@@ -1,11 +1,9 @@
 let mic, fft;
-let isGetting = false;
 
 function setup() {
   let cnv = createCanvas(windowWidth, windowHeight);
   mic = new p5.AudioIn();
   mic.start();
-  cnv.mouseClicked(toggleMic)
 
   fft = new p5.FFT();
   fft.setInput(mic);
@@ -30,14 +28,4 @@ function draw() {
   pop();
 
   window.addEventListener("resize", setup);
-}
-
-function toggleMic(){
-  if (isGetting) {
-    mic.stop();
-    isGetting = false;
-  } else {
-    mic.play();
-    isGetting = true;
-  }
 }
