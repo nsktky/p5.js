@@ -1,10 +1,9 @@
-let radius, count;
+let radius;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(60, 30, 60);
   radius = 10;
-  count = 2;
   rectMode(CENTER);
   noStroke();
 }
