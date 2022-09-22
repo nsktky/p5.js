@@ -1,7 +1,7 @@
 let mic, fft;
 
 function setup() {
-  let cnv = createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight);
   mic = new p5.AudioIn();
   mic.start();
 
