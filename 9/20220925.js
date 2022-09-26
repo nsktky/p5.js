@@ -21,10 +21,10 @@ function draw() {
     for (let x = 0; x < capture.width + grid; x += grid) {
       let angle =
         noise(x * noiseStep, y * noiseStep, frameCount * timeStep) * 720;
-      let offset = ((y * capture.width) + x) * 4;
-      let r = capture.pixels[offset] + map(cos(angle), -1, 1, 0, 200)
-      let g = capture.pixels[offset + 1] + map(sin(angle), -1, 1, 0, 100)
-      let b = capture.pixels[offset + 2] + map(cos(angle*0.1), -1, 1, 0, 100)
+      let offset = (y * capture.width + x) * 4;
+      let r = capture.pixels[offset] + map(cos(angle), -1, 1, 0, 200);
+      let g = capture.pixels[offset + 1] + map(sin(angle), -1, 1, 0, 100);
+      let b = capture.pixels[offset + 2] + map(cos(angle * 0.1), -1, 1, 0, 100);
       fill(r, g, b);
       rect(x, y, grid);
     }
