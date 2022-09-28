@@ -1,13 +1,13 @@
-let noiseStep = 0.001;
-let timeStep = 0.005;
+let noiseStep = 0.0001;
+let timeStep = 0.001;
 let angleStep = 0.001;
 let angleStep2 = 600;
 let points = [];
-let grid = 30;
+let grid = 20;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  angleMode(DEGREES);
+  // angleMode(DEGREES);
   background(0);
   noStroke();
   colorMode(HSB, 360, 100, 100, 100);
@@ -47,8 +47,8 @@ function draw() {
       360
     );
     let h = map(sin(colorAngle), -1, 1, 10, 360);
-    let s = map(sin(colorAngle), -1, 1, 10, 720);
-    fill(h, s, 100, 100);
-    circle(points[i].x, points[i].y, grid);
+    let s = map(sin(colorAngle), -1, 1, 10, 50);
+    fill(h, s, 70, 100);
+    rect(points[i].x, points[i].y, grid);
   }
 }
