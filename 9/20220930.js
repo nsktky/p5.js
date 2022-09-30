@@ -46,10 +46,12 @@ function draw() {
       0,
       360
     );
-    let h = map(sin(colorAngle), -1, 1, 10, 300);
+    let h = map(sin(colorAngle), -1, 1, 10, 360);
     let s = map(cos(colorAngle), -1, 1, 10, 100);
+    let b = map(tan(colorAngle), -1, 1, 10, 100);
     let r = map(sin(colorAngle), -1, 1, grid * 0.1, grid * 5);
-    fill(h, s, 100, 10);
-    ellipse(points[i].x, points[i].y, grid, r);
+    fill(h, s, b, 10);
+    ellipse(points[i].x, points[i].y, r, r);
   }
 }
+
