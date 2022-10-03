@@ -1,7 +1,7 @@
 let noiseStep = 0.0001;
 let timeStep = 0.0001;
-let angleStep = 0.005;
-let angleStep2 = 600;
+let angleStep = 0.0001;
+let angleStep2 = 100;
 let points = [];
 let grid = 20;
 
@@ -46,9 +46,9 @@ function draw() {
       0,
       360
     );
-    let h = map(sin(colorAngle), -1, 1, 10, 360);
+    let h = map(tan(colorAngle), -1, 1, 10, 25);
     let s = map(cos(colorAngle), -1, 1, 10, 100);
-    let b = map(tan(colorAngle), -1, 1, 10, 100);
+    let b = map(sin(colorAngle), -1, 1, 10, 100);
     stroke(h, s, b, 1);
     line(
       points[i].x,
@@ -56,5 +56,8 @@ function draw() {
       points[int(random(i))].x,
       points[int(random(i))].y
     );
+    noStroke();
+    fill(h, s, b, 1);
+    circle(points[i].x, points[i].y, grid);
   }
 }
