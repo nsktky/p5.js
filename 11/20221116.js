@@ -8,7 +8,7 @@ function setup() {
   // angleMode(DEGREES);
   noStroke();
   colorMode(HSB, 360, 100, 100, 100)
-  grid = width / 3;
+  grid = width / 8;
 
   for(let x = 0; x < width + grid; x += grid) {
     for(let y = 0; y < height + grid; y += grid) {
@@ -19,7 +19,7 @@ function setup() {
 }
 
 function draw() {
-  background(20, 1);
+  // background(20, 1);
   for(let i = 3; i < points.length; i++) {
     let angle = map(noise(points[i].x * 0.001, points[i].y * 0.001, frameCount*0.00001),0,1,0,100)
     points[i].add(createVector(sin(angle), cos(angle)));
@@ -28,9 +28,9 @@ function draw() {
     // if(points[i].y > height*1.2) points[i].y = 0;
     // if(points[i].y < -height*0.2) points[i].y = height;
 
-    stroke(map(cos(angle), -1, 1, 0, 255), map(sin(angle), -1, 1, 0, 100), 100);
+    stroke(map(cos(angle), -1, 1, 0, 255), map(sin(angle*0.1), -1, 1, 0, 100), 30);
     noFill();
-    curve(points[i-3].x, points[i-3].y, points[i-2].x, points[i-2].y, 
+    curve(random(width), random(height), points[i-2].x, points[i-2].y, 
       points[i].x, points[i].y, points[i-1].x, points[i-1].y)
   }
 }
