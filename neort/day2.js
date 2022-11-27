@@ -1,35 +1,45 @@
+let noiseStep = 0.000001;
+let timeStep = 0.00005;
 let points = [];
 let grid;
-let seed;
 
 function setup() {
     createCanvas(11012, 1080);
     pixelDensity(1);
 
-    background(25);
-    grid = width / 100;
-    for (let x = 0; x < width + grid; x += grid) {
-      for (let y = 0; y < height + grid; y += grid) {
+    grid = width / 30
+    colorMode(HSB, 360, 100, 100, 100);
+    background(0);
+    noStroke();
+  
+    for (let y = 0; y <= height + grid; y += grid) {
+      for (let x = 0; x <= width + grid; x += grid) {
         let p = createVector(x, y);
         points.push(p);
       }
     }
-    seed = random(100000000000);
-}
-
-function draw() {
-    randomSeed(seed)
-    // background(25, 10)
+  }
+  
+  function draw() {
     for (let i = 0; i < points.length; i++) {
-      push();
-      translate(points[i].x, points[i].y)
-      if (frameCount % 2 == 0) {
-        stroke(255);
-      } else {
-        stroke(255, 0, 0);
-      }
-      let step = random(10)
-      line(0, 0, sin(frameCount*step) * grid * 0.5, cos(frameCount*step) * grid * 0.5)
-      pop()
+      let angle = map(
+        noise(
+          points[i].x * noiseStep,
+          points[i].y * noiseStep,
+          frameCount * timeStep
+        ),
+        0,
+        1,
+        0,
+        360
+      );
+      let h = map(sin(angle), -1, 1, 0, 360);
+      let s = map(cos(angle), -1, 1, 0, 100);
+      let b = map(tan(angle), -1, 1, 0, 100);
+      let r = map(sin(angle), -1, 1, grid * 0.1, grid * 5);
+      fill(h, s, 100, 1);
+      stroke(s, b, h, 100);
+      ellipse(points[i].x, points[i].y, r, r);
     }
-}
+  }
+  
