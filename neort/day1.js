@@ -19,7 +19,6 @@ function setup() {
 
 function draw() {
     randomSeed(seed)
-    // background(25, 10)
     for (let i = 0; i < points.length; i++) {
       push();
       translate(points[i].x, points[i].y)
