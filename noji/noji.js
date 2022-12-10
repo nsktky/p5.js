@@ -7,20 +7,17 @@ function setup() {
   noFill()
   angleMode(DEGREES)
   colorMode(HSB, 360, 100, 100)
-  radius = width * 0.6
+  radius = width * 0.2
 }
 
 function draw() {
   translate(width/2, height/2);
-  rotate(random(100))
+  // rotate(random(100))
 
   beginShape()
   for(let i = 0; i < 360; i++) {
-    let xoff = map(sin(i), -1, 1, 0, 10)
-    let yoff = map(cos(i), -1, 1, 0, 10)
-    let angle = map(noise(xoff, yoff, frameCount*0.1), 0, 1, 0, 360)
-    x = radius * sin(angle) / frameCount * 50
-    y = radius * cos(angle) / frameCount * 50
+    x = radius * sin(i + frameCount * 0.01)
+    y = radius * cos(i * frameCount * 0.001) 
     vertex(x, y)
   }
   endShape(CLOSE)

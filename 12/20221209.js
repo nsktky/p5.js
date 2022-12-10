@@ -3,8 +3,7 @@ let x, y, radius;
 function setup() {
 	createCanvas(windowWidth, windowHeight);
   background(0);
-  stroke(255)
-  noFill()
+  stroke(255, 60, 40)
   angleMode(DEGREES)
   colorMode(HSB, 360, 100, 100)
   radius = width * 0.6
@@ -12,7 +11,7 @@ function setup() {
 
 function draw() {
   translate(width/2, height/2);
-  rotate(random(100))
+  rotate(random(360))
 
   beginShape()
   for(let i = 0; i < 360; i++) {
