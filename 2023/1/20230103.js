@@ -1,34 +1,52 @@
-let x, y, radius;
+let img, cnv;
+function preload() {
+  img = loadImage("img20230103.jpg")
+}
 
+let points = [];
+let mult = 0.001;
+let mult2 = 300;
 function setup() {
-	createCanvas(windowWidth, windowHeight);
-  background(0);
-  angleMode(DEGREES)
-  radius = width * 0.001
-  // noFill()
+  cnv = createCanvas(img.width, img.height);
+  let newCanvasX = (windowWidth - img.width)/2;
+  let newCanvasY = (windowHeight - img.height)/2;
+  cnv.position(newCanvasX, newCanvasY);
+
+  image(img, 0, 0);
+  img.loadPixels();
+
+  noiseDetail(4);
+  noStroke();
+  angleMode(DEGREES);
+  let tileCount = 30;
+  let grid = width / tileCount;
+
+  for (let y = 0; y <= height; y += grid) {
+    for (let x = 0; x <= width; x += grid) {
+      let p = createVector(x, y);
+      points.push(p);
+    }
+  }
 
 }
 
 function draw() {
-  // background(0)
-  translate(width / 2, height / 2)
-  fill(0)
-  circle(0, 0, radius*300)
-  beginShape()
-  for(let i = 0; i < 360; i++) {
-    let xoff = map(sin(i), -1, 1, 0, 100)
-    let yoff = map(cos(i), -1, 1, 0, 100)
-    let angle = map(noise(xoff, yoff, frameCount*1), 0, 1, 0, 720)
-    x = radius * i * sin(angle)
-    y = radius * i * cos(angle)
-    vertex(x, y)
-    stroke(255, 180, 200)
-    fill(25,140, 200, 10)
+  for (let i = 0; i < points.length; i++) {
+    let angle = map(noise(points[i].x * mult, points[i].y * mult), 0, 1, 0, mult2);
+    points[i].add(createVector(sin(angle), cos(angle)));
 
+    if (points[i].x > width) points[i].x = random(width);
+    if (points[i].x < 0) points[i].x = random(width);
+    if (points[i].y < 0) points[i].y = random(height);
+    if (points[i].y > height) points[i].y = random(height);
+
+    let pix = color(img.get(points[i].x, points[i].y));
+    let scale = round(red(pix) * 1.1922 + green(pix) * 0.707 + blue(pix) * 0.471);
+    fill(red(pix), scale, blue(pix));
+    rect(points[i].x + random(4), points[i].y + random(4), 2);
+    fill(red(pix),green(pix), scale);
+    rect(points[i].x - random(4), points[i].y - random(4), 2);
+    fill(scale, green(pix), blue(pix));
+    rect(points[i].x, points[i].y, 3);
   }
-  endShape(CLOSE)
-}
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
 }
