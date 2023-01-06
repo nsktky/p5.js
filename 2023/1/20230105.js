@@ -15,6 +15,7 @@ function draw() {
     let yoff = map(sin(i), -1, 1, 0, 360)
     x = radius * i * cos(xoff - frameCount)
     y = radius * i * sin(yoff + frameCount)
+    
     if(keyIsPressed) {
       strokeWeight(1)
       frameRate(4)
