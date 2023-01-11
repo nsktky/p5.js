@@ -69,7 +69,7 @@ function move(px, py) {
     x = radius * 0.15 * (sin(angle) + cos(i))
     y = radius * 0.15 * (sin(i) - tan(frameCount*0.01 + px - py))
     noFill();
-        stroke(250, 190, 20)
+    stroke(250, 190, 20)
     vertex(x, y)
   }
   endShape(CLOSE)
