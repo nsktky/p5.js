@@ -36,7 +36,6 @@ function draw() {
     if(d < - 0.1) col = "#000";
     draw_rect(p, 10, col);
   }
-
 }
 
 function windowResized() {
