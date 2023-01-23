@@ -5,7 +5,6 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background(0);
   angleMode(DEGREES);
-  // colorMode(HSB, 360, 100, 100, 100)
   // rectMode(CENTER)
 
   grid = width / 100
