@@ -28,16 +28,20 @@ function setup() {
 
 function draw() {
   for(let i = 0; i < grid1.length; i++) {
-    let angle = map(noise(grid1[i].x, grid1[i].y, frameCount), 0, 1, 0, 600);
+    let angle = map(noise(grid1[i].x, grid1[i].y, frameCount), 0, 1, 0, 100);
+    if(grid1[i].x < 0) grid1[i].x = width;
+    if(grid1[i].x > width) grid1[i].x = 0;
     grid1[i].add(createVector(sin(angle)*10, cos(angle)));
-    fill(angle)
+    fill(angle*2.5)
     circle(grid1[i].x, grid1[i].y, 10);
   }
 
   for(let i = 0; i < grid2.length; i++) {
-    let angle = map(noise(grid2[i].x, grid2[i].y, frameCount), 0, 1, 0, 600);
-    grid2[i].add(createVector(sin(angle)*10, sin(angle)));
-    fill(angle)
+    let angle = map(noise(grid2[i].x, grid2[i].y, frameCount), 0, 1, 0, 100);
+    if(grid2[i].x < 0) grid2[i].x = height;
+    if(grid2[i].x > height) grid2[i].x = 0;
+    grid2[i].add(createVector(sin(angle)*10, cos(angle)));
+    fill(angle*2.5)
     circle(grid2[i].y, grid2[i].x, 10);
   }
 }
