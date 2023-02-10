@@ -1,43 +1,27 @@
-let x, y, radius;
+let noiseStep = 0.0001;
+let timeStep = 0.0005;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background(15);
-  angleMode(DEGREES);
   rectMode(CENTER);
-  colorMode(HSB, 360, 100, 100, 100)
-  radius = min(width, height) * 0.4;
-  x = 0;
-  y = 0;
-  blendMode(DIFFERENCE);
   noStroke();
+  colorMode(HSB, 360, 100, 100, 100)
 }
 
 function draw() {
-  drawImage(width / 2, height / 2, 1)
-}
-
-function drawImage(ox, oy, s) {
-  push();
-  translate(ox, oy);
-  beginShape()
-  for(let i = 0; i < 300; i++){
-    let angle = map(noise(x, y, frameCount * 0.01), 0, 1, 0, 360);
-    let xoff = map(sin(angle), -1, 1, 0, 360);
-    let yoff = map(cos(angle), -1, 1, 0, 360);
-    x = radius * sin(xoff);
-    y = radius * cos(xoff);
-    let move = map(cos(frameCount*0.1), -1, 1, 0, width*0.2) * s
-    fill(angle, y, angle/yoff/xoff);
-    rotate(angle);
-    ellipse(y - radius*0.3, x + move, angle);
-    vertex(x, y)
+  background(20, 100, 30)
+  grid = width / 100
+  for(let y = 0; y < height+grid; y+= grid){
+    for(let x = 0; x < width+grid; x+= grid){
+      let angle = noise(x * noiseStep, y * noiseStep, frameCount*timeStep)*360;
+      let a = map(sin(angle), -1, 1, 0, grid)
+      let b = map(cos(angle), -1, 1, 0, grid)
+      fill(angle, a, b*b)
+      ellipse(x, y, a+b, b-a);
+    }
   }
-  endShape(CLOSE)
-  pop();
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-  background(150);
 }
