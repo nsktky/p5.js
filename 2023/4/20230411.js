@@ -1,7 +1,7 @@
 let particles = []
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(100, 100);
   rectMode(CENTER)
   // angleMode(DEGREES)
   background(255)
