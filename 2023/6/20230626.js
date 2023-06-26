@@ -26,7 +26,7 @@ class Lightning {
     this.path.push(newPoint);
     this.noiseOffset += this.noiseScale;
     this.currentStep++;
-    this.opacity -= (255 / this.maxSteps);
+    this.opacity -= (350 / this.maxSteps);
     if (this.currentStep >= this.maxSteps) {
       this.isAlive = false;
     }
@@ -41,12 +41,12 @@ class Lightning {
   }
 
   draw() {
-    stroke(255, 255, 255, this.opacity);
+    stroke(this.currentStep, this.noiseOffset, this.opacity, this.opacity);
     noFill();
     beginShape();
     for (let point of this.path) {
       vertex(point.x, point.y);
-      vertex(point.y, point.x);
+      vertex(point.x+20, point.y+100);
     }
     endShape();
   }
@@ -56,9 +56,10 @@ let lightningBolts = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 100; i++) {
     lightningBolts[i] = new Lightning();
   }
+  strokeWeight(10)
 }
 
 function draw() {
@@ -71,6 +72,6 @@ function draw() {
 
 function keyPressed() {
   if (key == 's'){
-    saveCanvas('20230624', 'png');
+    saveCanvas('20230626', 'png');
   }
 }
