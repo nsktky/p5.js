@@ -6,7 +6,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
   // angleMode(DEGREES);
-  grid = min(width, height) / 8;
+  grid = min(width, height) / 4;
   for(let x = 0; x <= width; x += grid) {
     for(let y = 0; y <= height; y += grid) {
       let c;
