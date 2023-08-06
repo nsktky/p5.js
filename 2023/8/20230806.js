@@ -8,7 +8,7 @@ function setup() {
 }
 
 function draw() {
-  background(200, 1);
+  background(0);
   for (let particle of particles) {
     particle.update();
     particle.show();
@@ -52,8 +52,8 @@ class Particle {
       }
     }
     distances.sort((a, b) => a.distance - b.distance);
-    for (let i = 0; i < 1; i++) {
-      stroke(0);
+    for (let i = 0; i < 10; i++) {
+      stroke(this.pos.x, this.pos.y, i*50);
       line(this.pos.x, this.pos.y, distances[i].particle.pos.x, distances[i].particle.pos.y);
     }
   }
@@ -61,6 +61,6 @@ class Particle {
 
 function keyPressed() {
   if (key == 's'){
-    saveCanvas('20230802-2', 'png');
+    saveCanvas('20230806-2', 'png');
   }
 }
