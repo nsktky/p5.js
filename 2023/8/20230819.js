@@ -68,6 +68,6 @@ class Particle {
 
 function keyPressed() {
   if (key == 's'){
-    saveCanvas('20230816-2', 'png');
+    saveCanvas('20230819-2', 'png');
   }
 }
