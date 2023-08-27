@@ -19,9 +19,9 @@ function draw() {
   for (let i = 0; i < 360; i += angleStep) {
     let rad = radians(i + angle);
     let r = map(i, 0, 360, 0, maxOffset);
-    let x = r * cos(rad);
+    let x = r * cos(2 * rad);
     let y = r * sin(rad) * cos(rad);
-    vertex(x, y);
+    vertex(x, y*0.7);
   }
   endShape();
 
@@ -37,6 +37,6 @@ function draw() {
 
 function keyPressed() {
   if (key == 's'){
-    saveCanvas('20230826-2', 'png');
+    saveCanvas('20230827-2', 'png');
   }
 }
