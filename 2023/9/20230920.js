@@ -1,5 +1,5 @@
 let pendulums = [];
-let numPendulums = 200;
+let numPendulums = 100
 
 function setup() {202309
   createCanvas(windowWidth, windowHeight);
@@ -7,14 +7,14 @@ function setup() {202309
   fill(0);
 
   // 振子の初期化
-  for (let i = 0; i < numPendulums; i++) {
+  for (let i = 1; i < numPendulums; i++) {
     let x = map(i, 0, numPendulums, 0, width);
-    pendulums.push(new Pendulum(x, 0, 20 + i * 10));
+    pendulums.push(new Pendulum(width * 0.5, x, i * 10));
   }
 }
 
 function draw() {
-  background(220, 1);
+  background(220);
 
   for (let pendulum of pendulums) {
     pendulum.update();
@@ -30,9 +30,9 @@ class Pendulum {
     this.angle = PI / 4;
     this.aVelocity = 0.0;
     this.aAcceleration = 0.0;
-    this.damping = 0.995; // 摩擦
-    this.ballRadius = 25.0;
-    this.gravity = 0.4; // 重力
+    this.damping = 0.9995; // 摩擦
+    this.ballRadius = 10.0;
+    this.gravity = 0.89; // 重力
   }
 
   update() {
@@ -59,6 +59,6 @@ class Pendulum {
 
 function keyPressed() {
   if (key == 's'){
-    saveCanvas('20230919-2', 'png');
+    saveCanvas('20230920-2', 'png');
   }
 }
