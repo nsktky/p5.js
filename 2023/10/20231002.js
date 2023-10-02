@@ -5,7 +5,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
   fill(0);
-  background(220);
+  background(20);
 
   // 振子の初期化
   for (let i = 1; i < numPendulums; i++) {
@@ -15,7 +15,7 @@ function setup() {
 }
 
 function draw() {
-  background(220, 1);
+  // background(220, 1);
   // rotate(1)
   for (let pendulum of pendulums) {
     pendulum.update();
@@ -31,9 +31,9 @@ class Pendulum {
     this.angle = PI;
     this.aVelocity = 0.0;
     this.aAcceleration = 0.0;
-    this.damping = 0.999999; // 摩擦
-    this.ballRadius = 10.0;
-    this.gravity = 100; // 重力
+    this.damping = 0.5; // 摩擦
+    this.ballRadius = 5.0;
+    this.gravity = 300; // 重力
   }
 
   update() {
@@ -45,14 +45,16 @@ class Pendulum {
     );
     this.aVelocity += this.aAcceleration; // 速度を加速度で増加
     this.aVelocity *= this.damping; // 速度を減少
-    this.angle += this.aVelocity - this.origin.y / 200; // 角度を速度で増加
+    this.angle += this.aVelocity - this.origin.y / 10; // 角度を速度で増加
     // this.ballRadius += 0.05
   }
 
   display() {
     stroke(0);
-    strokeWeight(1);
-    // line(this.origin.x, this.origin.x, this.position.x, this.position.y);
+    strokeWeight(0.01);
+    stroke(250, 190, 20);
+    line(this.origin.x, this.origin.x, this.position.x, this.position.y);
+    stroke(0);
     rect(this.position.x, this.position.y, this.ballRadius, this.ballRadius);
   }
 }
@@ -61,6 +63,6 @@ class Pendulum {
 
 function keyPressed() {
   if (key == 's'){
-    saveCanvas('20230929-2', 'png');
+    saveCanvas('20231002-2', 'png');
   }
 }
