@@ -31,7 +31,7 @@ function createGrid(gridSize) {
 function randomizeGrid(grid) {
   for (let i = 0; i < gridSize; i++) {
     for (let j = 0; j < gridSize; j++) {
-      grid[i][j] = floor(random(2));
+      grid[i][j] = floor(random(3));
     }
   }
 }
@@ -39,7 +39,7 @@ function randomizeGrid(grid) {
 function displayGrid(grid, t) {
   for (let i = 0; i < gridSize; i++) {
     for (let j = 0; j < gridSize; j++) {
-      let h = map(noise(i, j, t*0.01), 0, 1, 100, 360)
+      let h = map(noise(i, j, t*0.1), 0, 1, 0, 360)
       let s = map(noise(i, j, t), 0, 1, 0, 100)
       let b = map(noise(i, j, t), 0, 1, 0, 100)
       if (grid[i][j] == 1) {
